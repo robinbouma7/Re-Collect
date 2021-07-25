@@ -81,6 +81,7 @@
     <IncludePath>$(ProjectDir)\SDL2_image\include;$(ProjectDir)\SDL2\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)\SDL2_image\lib\x64\;$(ProjectDir)\SDL2\lib\x64\;$(LibraryPath)</LibraryPath>
     <TargetName>Re-Collect</TargetName>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)2\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

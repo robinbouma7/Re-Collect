@@ -9,6 +9,8 @@ Update updatefunction;
 
 SDL_Renderer* Game::renderer = nullptr;
 
+
+
 Game::Game() {
 
 }
@@ -35,7 +37,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		if (renderer) {
-			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 			std::cout << "renderer created." << std::endl;
 		}
 		isRunning = true;
@@ -43,6 +45,18 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	else {
 		isRunning = false;
 	}
+	
+	//debug rectangles to see test hitboxes
+	r1.x = 100;
+	r1.y = 100;
+	r1.w = 100;
+	r1.h = 100;
+
+	r2.x = 300;
+	r2.y = 100;
+	r2.w = 100;
+	r2.h = 100;
+	
 
 	player = new gameObject("assets/ricardo.png", 0, 0);
 	//player2 = new gameObject("assets/ricardo.png", 75, 75);
@@ -65,6 +79,7 @@ void Game::handleEvents() {
 void Game::update() {
 	
 	updatefunction.updateplayer(player);
+	
 	//std::cout << "\nbuttons checked" << std::endl;
 	//std::cout << "xpos: " << player->xpos << "\nypos: " << player->ypos << std::endl;
 	//player->update();
@@ -75,6 +90,13 @@ void Game::render() {
 	SDL_RenderClear(renderer);
 	//render stuff here
 	player->render();
+
+	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+	SDL_RenderFillRect(renderer, &r1);
+	SDL_RenderFillRect(renderer, &r2);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	
+	
 	//player2->render();
 
 	SDL_RenderPresent(renderer);
