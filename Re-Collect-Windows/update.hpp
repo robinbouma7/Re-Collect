@@ -5,8 +5,8 @@
 class Update {
 
 public:
-	void updateplayer(gameObject* Object);
-	bool playerCollision(gameObject* Object);
+	void updateplayer(gameObject* Object, gameObject* Map, int border[2]);
+	bool playerCollision(gameObject* Object, gameObject* Map);
 
 private:
 };

@@ -22,6 +22,8 @@ public:
 
 	static SDL_Renderer* renderer;
 	bool isRunning;
+	SDL_Cursor* cursor;
+	SDL_Event event;
 
 private:
 	int cnt = 0;

@@ -153,12 +153,15 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="update.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.hpp" />
     <ClInclude Include="gameObject.hpp" />
+    <ClInclude Include="main.hpp" />
+    <ClInclude Include="menu.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="textureManager.hpp" />
     <ClInclude Include="update.hpp" />
