@@ -1,1 +1,3 @@
 Re-Collect-Windows/.vs/*
+.vscode/*
+re-collect-android/*

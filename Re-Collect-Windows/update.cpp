@@ -37,10 +37,11 @@ int mapsizex;
 int mapsizey;
 
 
-void Update::updateplayer(gameObject* Object, gameObject* Map, int border[2]) {
+void Update::updateplayer(gameObject* Object, gameObject* Map) {
 
 	gameObject* object = Object;
 	gameObject* map = Map;
+	Game game;
 
 	std::ifstream mapSizeFile("maps/test/mapSize.txt");
 
@@ -54,49 +55,96 @@ void Update::updateplayer(gameObject* Object, gameObject* Map, int border[2]) {
 	while (mapSizeFile >> mapsizex >> mapsizey) {
 
 		//std::cout << mapsizex << "\n" << mapsizey << std::endl;
-		mapBorderx = mapsizex - 800;
-		mapBordery = mapsizey - 600;
+		mapBorderx = mapsizex - game.screenWidth;
+		mapBordery = mapsizey - game.screenHeight;
 
 	}
 	
 
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
 	//input checks
+	
 	if (keys[SDL_SCANCODE_A]) {
-		if (object->xpos < 200 && map->srcx > -1) {			
-			map->srcx--;	
+		if (object->xpos < 200 && map->srcx > -1) {	
+			if (keys[SDL_SCANCODE_LSHIFT]) {
+				map->srcx -= 2;
+			}
+			else {
+				map->srcx--;
+			}
 		}
 		else {
-			object->xpos--;
+			if (keys[SDL_SCANCODE_LSHIFT]) {
+				object->xpos -= 2;
+			}
+			else {
+				object->xpos--;
+			}
 		}
 		
 	}
 	
 	if (keys[SDL_SCANCODE_W]) {
 		if (object->ypos < 150 && map->srcy > -1) {
-			map->srcy--;
+			if (keys[SDL_SCANCODE_LSHIFT]) {
+				map->srcy -= 2;
+			}
+			else {
+				map->srcy--;
+			}
+			
 
 		}
 		else {
-			object->ypos--;
+			if (keys[SDL_SCANCODE_LSHIFT]) {
+				object->ypos -= 2;
+			}
+			else {
+				object->ypos--;
+			}
+			
 		}
 	}
 	
 	if (keys[SDL_SCANCODE_S]) {
 		if (object->ypos > 450 && map->srcy < mapBordery) {
-			map->srcy++;
+			if (keys[SDL_SCANCODE_LSHIFT]) {
+				map->srcy += 2;
+			}
+			else {
+				map->srcy++;
+			}
+			
 		}
 		else {
-			object->ypos++;
+			if (keys[SDL_SCANCODE_LSHIFT]) {
+				object->ypos += 2;
+			}
+			else {
+				object->ypos++;
+			}
+			
 		}
 	}
 	
 	if (keys[SDL_SCANCODE_D]) {
 		if (object->xpos > 600 && map->srcx < mapBorderx) {	
-			map->srcx++;		
+			if (keys[SDL_SCANCODE_LSHIFT]) {
+				map->srcx += 2;
+			}
+			else {
+				map->srcx++;
+			}
+					
 		}
 		else {
-			object->xpos++;
+			if (keys[SDL_SCANCODE_LSHIFT]) {
+				object->xpos += 2;
+			}
+			else {
+				object->xpos++;
+			}
+			
 		}
 	}
 	if (keys[SDL_SCANCODE_Q]) {

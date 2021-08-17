@@ -11,7 +11,7 @@ public:
 	Game();
 	~Game();
 
-	void init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
+	int init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
 	void handleEvents();
 	void update();
@@ -20,10 +20,17 @@ public:
 
 	bool running() { return isRunning;  }
 
+	void InitDiscord();
+	void UpdatePresence(const char* status);
+
+
+
 	static SDL_Renderer* renderer;
 	bool isRunning;
 	SDL_Cursor* cursor;
 	SDL_Event event;
+	int screenWidth;
+	int screenHeight;
 
 private:
 	int cnt = 0;
