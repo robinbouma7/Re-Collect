@@ -6,17 +6,25 @@
 #include "discord_rpc.h"
 #include <time.h>
 
+
+
 gameObject* player;
 gameObject* map;
-//gameObject* player2;
+gameObject* interact1;
+gameObject* interact2;
+//TTF_Font* comicSans_outline;
 Update updatefunction;
 
+
+
 SDL_Renderer* Game::renderer = nullptr;
+
 
 int menu = 0;
 static int64_t StartTime;
 const char* status = "status not set";
 int oldScreenWidth, oldScreenHeight;
+
 
 Game::Game() {
 
@@ -30,6 +38,8 @@ int Game::init(const char* title, int xpos, int ypos, int width, int height, boo
 
 	screenWidth = 800;
 	screenHeight = 600;
+
+	
 
 	std::cout << "als het spel opent druk op enter om te starten.\ndeze console is voor testen en gaat in en latere versie weg.\nals je een probleem heb zeg het me maar.\n\nen trouwens, collision is er alleen op 2 100 bij 100 px vierkanten.\ndeze zijn op x:100 y:100 en x:300 y:100. (er zijn zwarte vierkanten op de map getekend waar ze zijn)\n\nde grootte van het scherm word nog veranderd." << std::endl;
 
@@ -45,8 +55,15 @@ int Game::init(const char* title, int xpos, int ypos, int width, int height, boo
 	}
 	SDL_SetHint(SDL_HINT_FRAMEBUFFER_ACCELERATION, "1");
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
+		
 		std::cout << "SDL initialized." << std::endl;
-
+		if (TTF_Init() != 0) {
+			std::cout << "error with ttf init: " << SDL_GetError() << std::endl;
+			isRunning = false;
+		}
+		else {
+			std::cout << "SDL ttf initialized\n";
+		}
 		window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
 
 		if (window) {
@@ -78,18 +95,32 @@ int Game::init(const char* title, int xpos, int ypos, int width, int height, boo
 	
 	r2.w = 100;
 	r2.h = 100;
-	
+	//loading textures:
 	//path, x, y, srcx, srcy, srcw, srch
-	player = new gameObject("assets/ricardo.png", 375, 275, 0, 0, 25, 25);
+	player = new gameObject("assets/player.png", 375, 275, 0, 0, 50, 50);
 	map = new gameObject("maps/test/testMap.png", 0, 0, 0, 0, Game::screenWidth, Game::screenHeight);
-
+	interact1 = new gameObject("assets/Ricardo.png", 100, 500, 0, 0, 25, 25);
+	interact2 = new gameObject("assets/Ricardo.png", 800, 300, 0, 0, 25, 25);
+	
 	player->sizeh = 50;
 	player->sizew = 50;
 	map->sizeh = Game::screenHeight;
 	map->sizew = Game::screenWidth;
+	interact1->sizeh = 50;
+	interact1->sizew = 50;
+	interact2->sizeh = 50;
+	interact2->sizew = 50;
 	
+	//loading fonts:
 	
-	//player2 = new gameObject("assets/ricardo.png", 75, 75);
+	comicSans = TTF_OpenFont("fonts/comic-sans.ttf", 32);
+	//comicSans_outline = TTF_OpenFont("fonts/comic-sans.ttf", 32);
+	//TTF_SetFontOutline(comicSans_outline, 3);
+	if (!comicSans) {
+		std::cout << "error with loading font: " << SDL_GetError() << std::endl;
+		isRunning = false;
+	}
+
 	return 1;
 }
 
@@ -100,9 +131,10 @@ void Game::handleEvents() {
 		case SDL_QUIT:
 			isRunning = false;
 		break;
-	default:
 
-	break;
+		default:
+
+		break;
 
 	}
 }
@@ -120,7 +152,8 @@ void Game::update() {
 	}
 	
 	updatefunction.updateplayer(player, map);
-
+	interact1->update();
+	interact2->update();
 	r1.x = 100 - map->srcx;
 	r1.y = 100 - map->srcy;
 
@@ -130,23 +163,19 @@ void Game::update() {
 	//std::cout << "\nbuttons checked" << std::endl;
 	//std::cout << "xpos: " << player->xpos << "\nypos: " << player->ypos << std::endl;
 	//player->update();
-	//player2->update();
+
 }
 
 void Game::render() {
 	SDL_RenderClear(renderer);
 	//render stuff here
 	map->render();
+	interact1->render();
+	interact2->render();
 	player->render();
-	//rectangles used for tessting hitboxes.
-	//std::cout << "x: " << player->xpos << "\ny: " << player->ypos << std::endl;
-	//SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-	//SDL_RenderFillRect(renderer, &r1);
-	//SDL_RenderFillRect(renderer, &r2);
-	//SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	
-	
-	//player2->render();
+	if (updatefunction.interacting == true) {
+		updatefunction.renderText(comicSans, screenWidth, screenHeight);
+	}
 
 	SDL_SetCursor(Game::cursor);
 	SDL_RenderPresent(renderer);
@@ -155,6 +184,8 @@ void Game::render() {
 void Game::clean() {
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
+	TTF_CloseFont(comicSans);
+	TTF_Quit();
 	SDL_Quit();
 	std::cout << "window closed and renderer destroyed." << std::endl;
 }

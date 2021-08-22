@@ -4,6 +4,7 @@
 #include "SDL_image.h"
 #include <iostream>
 #include "gameObject.hpp"
+#include "SDL_ttf.h"
 
 class Game {
 
@@ -31,6 +32,7 @@ public:
 	SDL_Event event;
 	int screenWidth;
 	int screenHeight;
+	TTF_Font* comicSans;
 
 private:
 	int cnt = 0;

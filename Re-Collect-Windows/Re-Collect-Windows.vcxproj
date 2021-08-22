@@ -109,23 +109,23 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(projectdir)discord-presence\include;$(ProjectDir)\SDL2_image\include;$(ProjectDir)\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(projectdir)discord-presence\lib;$(ProjectDir)\SDL2_image\lib\x64\;$(ProjectDir)\SDL2\lib\x64\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(projectdir)discord-presence\include;$(ProjectDir)\SDL2_image\include;$(ProjectDir)\SDL2_ttf\include;$(ProjectDir)\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(projectdir)discord-presence\lib;$(ProjectDir)\SDL2_image\lib\x64\;$(ProjectDir)\SDL2_ttf\lib\x64\;$(ProjectDir)\SDL2\lib\x64\;$(LibraryPath)</LibraryPath>
     <TargetName>Re-Collect</TargetName>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)2\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(projectdir)discord-presence\include;$(ProjectDir)\SDL2_image\include;$(ProjectDir)\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(projectdir)discord-presence\lib;$(ProjectDir)\SDL2_image\lib\x64\;$(ProjectDir)\SDL2\lib\x64\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(projectdir)discord-presence\include;$(ProjectDir)\SDL2_image\include;$(ProjectDir)\SDL2_ttf\include;$(ProjectDir)\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(projectdir)discord-presence\lib;$(ProjectDir)\SDL2_image\lib\x64\;$(ProjectDir)\SDL2_ttf\lib\x64\;$(ProjectDir)\SDL2\lib\x64\;$(LibraryPath)</LibraryPath>
     <TargetName>Re-Collect</TargetName>
     <IntDir>$(Platform)\$(Configuration)</IntDir>
     <OutDir>$(SolutionDir)$(Platform)\Re-Collect\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='test-build|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(projectdir)discord-presence\include;$(ProjectDir)\SDL2_image\include;$(ProjectDir)\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(projectdir)discord-presence\lib;$(ProjectDir)\SDL2_image\lib\x64\;$(ProjectDir)\SDL2\lib\x64\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(projectdir)discord-presence\include;$(ProjectDir)\SDL2_image\include;$(ProjectDir)\SDL2_ttf\include;$(ProjectDir)\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(projectdir)discord-presence\lib;$(ProjectDir)\SDL2_image\lib\x64\;$(ProjectDir)\SDL2_ttf\lib\x64\;$(ProjectDir)\SDL2\lib\x64\;$(LibraryPath)</LibraryPath>
     <TargetName>Re-Collect</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -178,12 +178,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(projectdir)discord-presence\include;$(projectdir)SDL2_image\include\;$(projectdir)SDL2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectdir)discord-presence\include;$(projectdir)SDL2_ttf\include\;$(projectdir)SDL2_image\include\;$(projectdir)SDL2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -194,14 +194,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(projectdir)discord-presence\include;$(projectdir)SDL2_image\include\;$(projectdir)SDL2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectdir)discord-presence\include;$(projectdir)SDL2_ttf\include\;$(projectdir)SDL2_image\include\;$(projectdir)SDL2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='test-build|x64'">
@@ -212,14 +212,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(projectdir)discord-presence\include;$(projectdir)SDL2_image\include\;$(projectdir)SDL2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectdir)discord-presence\include;$(projectdir)SDL2_ttf\include\;$(projectdir)SDL2_image\include\;$(projectdir)SDL2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
